@@ -21,7 +21,7 @@ const databaseConnection = () => __awaiter(void 0, void 0, void 0, function* () 
     catch (error) {
         console.log({
             message: "Database not connected",
-            error: error.message
+            error: error.message,
         });
     }
 });

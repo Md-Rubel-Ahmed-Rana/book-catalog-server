@@ -56,7 +56,8 @@ const getAllBooks = async (
   const result = await Book.find(whereCondition)
     .sort(sortCondition)
     .skip(skip)
-    .limit(limit);
+    .limit(limit)
+    .populate("authorId");
   const total = await Book.countDocuments();
   return {
     meta: {
@@ -68,7 +69,13 @@ const getAllBooks = async (
   };
 };
 
+const getSingleBook = async (id: string) => {
+  const result = await Book.findById(id).populate("authorId");
+  return result;
+};
+
 export const BookService = {
   getAllBooks,
   createBook,
+  getSingleBook,
 };

@@ -2,6 +2,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express, { Application, NextFunction, Request, Response } from "express";
 import { AuthRoutes } from "./app/modules/auth/auth.route";
+import { BookRoutes } from "./app/modules/books/book.route";
 import { UserRoutes } from "./app/modules/users/user.route";
 
 const app: Application = express();
@@ -29,6 +30,7 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
 
 app.use("/api/v1/users", UserRoutes);
 app.use("/api/v1/auth", AuthRoutes);
+app.use("/api/v1/books", BookRoutes);
 
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
   try {

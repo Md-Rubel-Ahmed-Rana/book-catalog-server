@@ -9,11 +9,13 @@ const express_1 = __importDefault(require("express"));
 const auth_route_1 = require("./app/modules/auth/auth.route");
 const book_route_1 = require("./app/modules/books/book.route");
 const user_route_1 = require("./app/modules/users/user.route");
+const config_1 = __importDefault(require("./config"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)());
 dotenv_1.default.config();
+(0, config_1.default)();
 // root route
 app.get("/", (req, res, next) => {
     try {

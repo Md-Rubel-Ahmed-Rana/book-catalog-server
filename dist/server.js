@@ -4,9 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
-const config_1 = __importDefault(require("./config"));
 const port = process.env.PORT || 5000;
 app_1.default.listen(port, () => {
     console.log(`Book catalog server is runing on port ${port}`);
-    (0, config_1.default)();
 });

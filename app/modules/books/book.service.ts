@@ -73,9 +73,22 @@ const getSingleBook = async (id: string) => {
   const result = await Book.findById(id).populate("authorId");
   return result;
 };
+const updateBook = async (id: string, updatedData: Partial<IBook>) => {
+  const result = await Book.findByIdAndUpdate(id, updatedData, {
+    upsert: true,
+    new: true,
+  }).populate("authorId");
+  return result;
+};
+const deleteBook = async (id: string) => {
+  const result = await Book.findByIdAndDelete(id).populate("authorId");
+  return result;
+};
 
 export const BookService = {
   getAllBooks,
   createBook,
   getSingleBook,
+  updateBook,
+  deleteBook,
 };

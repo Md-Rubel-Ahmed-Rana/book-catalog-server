@@ -59,8 +59,37 @@ const getSingleBook = async (
   }
 };
 
+const updateBook = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await BookService.updateBook(req.params.id, req.body);
+    res.status(200).json({
+      statusCode: 201,
+      success: true,
+      message: "Book updated successfully!",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await BookService.deleteBook(req.params.id);
+    res.status(200).json({
+      statusCode: 201,
+      success: true,
+      message: "Book deleted successfully!",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const BookController = {
   getAllBooks,
   createBook,
   getSingleBook,
+  updateBook,
+  deleteBook,
 };

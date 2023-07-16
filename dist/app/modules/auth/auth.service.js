@@ -39,14 +39,22 @@ const loginUser = (email, password) => __awaiter(void 0, void 0, void 0, functio
     const jwtPayload = {
         id: isUserExist._id,
         email: isUserExist.email,
+        name: isUserExist.name,
     };
-    const token = jsonwebtoken_1.default.sign(jwtPayload, process.env.SECRET);
+    const token = jsonwebtoken_1.default.sign(jwtPayload, process.env.SECRET, {
+        expiresIn: "1d",
+    });
     return (result = {
         statusCode: 200,
         success: true,
         message: "User logged in successfully!",
         data: {
             accessToken: token,
+            user: {
+                name: isUserExist.name,
+                email: isUserExist.email,
+                id: isUserExist._id,
+            },
         },
     });
 });

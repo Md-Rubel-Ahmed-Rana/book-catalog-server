@@ -59,7 +59,7 @@ const getAllBooks = (filters, paginationOptions) => __awaiter(void 0, void 0, vo
     // retrieving data
     const whereCondition = andCondition.length > 0 ? { $and: andCondition } : {};
     const result = yield book_model_1.Book.find(whereCondition)
-        .sort(sortCondition)
+        .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
         .populate("authorId");
@@ -88,10 +88,15 @@ const deleteBook = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield book_model_1.Book.findByIdAndDelete(id).populate("authorId");
     return result;
 });
+const reviewToBook = (id, reviewData) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield book_model_1.Book.updateOne({ _id: id }, { $push: { reviews: reviewData } }, { upsert: true, new: true });
+    return result;
+});
 exports.BookService = {
     getAllBooks,
     createBook,
     getSingleBook,
     updateBook,
     deleteBook,
+    reviewToBook,
 };

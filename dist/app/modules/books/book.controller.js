@@ -96,10 +96,25 @@ const deleteBook = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         next(error);
     }
 });
+const reviewToBook = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield book_service_1.BookService.reviewToBook(req.params.id, req.body);
+        res.status(200).json({
+            statusCode: 201,
+            success: true,
+            message: "Review added successfully!",
+            data: result,
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+});
 exports.BookController = {
     getAllBooks,
     createBook,
     getSingleBook,
     updateBook,
     deleteBook,
+    reviewToBook,
 };

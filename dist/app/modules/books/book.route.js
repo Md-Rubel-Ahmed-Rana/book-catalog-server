@@ -9,4 +9,5 @@ bookRouter.get("/", book_controller_1.BookController.getAllBooks);
 bookRouter.get("/:id", book_controller_1.BookController.getSingleBook);
 bookRouter.patch("/:id", book_controller_1.BookController.updateBook);
 bookRouter.delete("/:id", book_controller_1.BookController.deleteBook);
+bookRouter.put("/:id", book_controller_1.BookController.reviewToBook);
 exports.BookRoutes = bookRouter;

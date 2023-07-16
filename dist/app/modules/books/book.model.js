@@ -21,16 +21,11 @@ const bookSchema = new mongoose_1.Schema({
         required: true,
     },
     publicationDate: {
-        type: Date,
-        default: Date.now(),
+        type: String,
+        required: true,
     },
-    reviews: {
-        userId: {
-            type: String,
-        },
-        review: {
-            type: String,
-        },
-    },
+    reviews: Array,
+}, {
+    timestamps: true,
 });
 exports.Book = (0, mongoose_1.model)("Book", bookSchema);

@@ -54,7 +54,7 @@ const getAllBooks = async (
   // retrieving data
   const whereCondition = andCondition.length > 0 ? { $and: andCondition } : {};
   const result = await Book.find(whereCondition)
-    .sort(sortCondition)
+    .sort({ createdAt: -1 })
     .skip(skip)
     .limit(limit)
     .populate("authorId");
@@ -85,10 +85,20 @@ const deleteBook = async (id: string) => {
   return result;
 };
 
+const reviewToBook = async (id: string, reviewData: any) => {
+  const result = await Book.updateOne(
+    { _id: id },
+    { $push: { reviews: reviewData } },
+    { upsert: true, new: true }
+  );
+  return result;
+};
+
 export const BookService = {
   getAllBooks,
   createBook,
   getSingleBook,
   updateBook,
   deleteBook,
+  reviewToBook,
 };

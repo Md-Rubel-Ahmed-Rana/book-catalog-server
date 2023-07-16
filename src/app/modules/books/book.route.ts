@@ -8,5 +8,6 @@ bookRouter.get("/", BookController.getAllBooks);
 bookRouter.get("/:id", BookController.getSingleBook);
 bookRouter.patch("/:id", BookController.updateBook);
 bookRouter.delete("/:id", BookController.deleteBook);
+bookRouter.put("/:id", BookController.reviewToBook);
 
 export const BookRoutes = bookRouter;

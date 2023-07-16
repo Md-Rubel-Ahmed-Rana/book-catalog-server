@@ -72,6 +72,7 @@ const updateBook = async (req: Request, res: Response, next: NextFunction) => {
     next(error);
   }
 };
+
 const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await BookService.deleteBook(req.params.id);
@@ -85,6 +86,23 @@ const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
     next(error);
   }
 };
+const reviewToBook = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const result = await BookService.reviewToBook(req.params.id, req.body);
+    res.status(200).json({
+      statusCode: 201,
+      success: true,
+      message: "Review added successfully!",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const BookController = {
   getAllBooks,
@@ -92,4 +110,5 @@ export const BookController = {
   getSingleBook,
   updateBook,
   deleteBook,
+  reviewToBook,
 };

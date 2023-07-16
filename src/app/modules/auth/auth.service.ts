@@ -25,9 +25,11 @@ const loginUser = async (email: string, password: string) => {
       data: null,
     });
   }
+
   const jwtPayload = {
     id: isUserExist._id,
     email: isUserExist.email,
+    name: isUserExist.name,
   };
   const token = jwt.sign(jwtPayload, process.env.SECRET as Secret);
 
@@ -37,6 +39,11 @@ const loginUser = async (email: string, password: string) => {
     message: "User logged in successfully!",
     data: {
       accessToken: token,
+      user: {
+        name: isUserExist.name,
+        email: isUserExist.email,
+        id: isUserExist._id,
+      },
     },
   });
 };

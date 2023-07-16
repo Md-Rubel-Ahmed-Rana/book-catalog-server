@@ -1,17 +1,12 @@
 import { Model, Types } from "mongoose";
 
-export type IReviews = {
-  userId: string;
-  review: string;
-};
-
 export type IBook = {
   title: string;
   author: string;
   authorId: Types.ObjectId;
   genre: string;
-  publicationDate: Date;
-  reviews?: IReviews[];
+  publicationDate: string;
+  reviews?: any;
 };
 
 export type IBookModel = Model<IBook>;

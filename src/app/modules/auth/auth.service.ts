@@ -31,7 +31,9 @@ const loginUser = async (email: string, password: string) => {
     email: isUserExist.email,
     name: isUserExist.name,
   };
-  const token = jwt.sign(jwtPayload, process.env.SECRET as Secret);
+  const token = jwt.sign(jwtPayload, process.env.SECRET as Secret, {
+    expiresIn: "1d",
+  });
 
   return (result = {
     statusCode: 200,

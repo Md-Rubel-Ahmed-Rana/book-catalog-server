@@ -9,6 +9,7 @@ const express_1 = __importDefault(require("express"));
 const auth_route_1 = require("./app/modules/auth/auth.route");
 const book_route_1 = require("./app/modules/books/book.route");
 const user_route_1 = require("./app/modules/users/user.route");
+const wishList_route_1 = require("./app/modules/wishList/wishList.route");
 const config_1 = __importDefault(require("./config"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
@@ -34,6 +35,7 @@ app.get("/", (req, res, next) => {
 app.use("/api/v1/users", user_route_1.UserRoutes);
 app.use("/api/v1/auth", auth_route_1.AuthRoutes);
 app.use("/api/v1/books", book_route_1.BookRoutes);
+app.use("/api/v1/wishlist", wishList_route_1.WishListRoutes);
 app.use("*", (req, res, next) => {
     try {
         res.status(404).json({

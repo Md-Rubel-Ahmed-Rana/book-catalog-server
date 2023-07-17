@@ -41,7 +41,7 @@ const getAllBooks = async (
   // pagination
   const {
     page = 1,
-    limit = 10,
+    limit = 9,
     skip = 0,
     sortBy,
     sortOrder,

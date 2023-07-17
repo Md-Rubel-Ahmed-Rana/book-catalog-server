@@ -28,10 +28,9 @@ const getReadingList = async (
 };
 const markAsRead = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    console.log("mark as read", req.params.id);
     const result = await ReadingList.updateOne(
       { _id: req.params.id },
-      {$set: { isRead: "read" }},
+      { $set: { isRead: "read" } },
       { upsert: true, new: true }
     );
     res.status(200).json(result);

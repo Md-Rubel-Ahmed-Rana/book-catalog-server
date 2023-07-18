@@ -51,11 +51,7 @@ const getAllBooks = (filters, paginationOptions) => __awaiter(void 0, void 0, vo
         });
     }
     // pagination
-    const { page = 1, limit = 10, skip = 0, sortBy, sortOrder, } = paginationHelper_1.paginationHelper.calculatePagination(paginationOptions);
-    const sortCondition = {};
-    if (sortBy && sortOrder) {
-        sortCondition[sortBy] = sortOrder;
-    }
+    const { page = 1, limit = 9, skip = 0, } = paginationHelper_1.paginationHelper.calculatePagination(paginationOptions);
     // retrieving data
     const whereCondition = andCondition.length > 0 ? { $and: andCondition } : {};
     const result = yield book_model_1.Book.find(whereCondition)

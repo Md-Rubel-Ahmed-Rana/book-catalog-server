@@ -24,6 +24,10 @@ const bookSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
+    year: {
+        type: String,
+        required: true,
+    },
     reviews: Array,
 }, {
     timestamps: true,

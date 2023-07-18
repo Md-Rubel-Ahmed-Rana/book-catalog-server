@@ -32,23 +32,22 @@ const createBook = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
 });
 const getAllBooks = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const paginationOptions = (0, pick_1.default)(req.query, [
-            "page",
-            "limit",
-            "sortBy",
-            "sortOrder",
-        ]);
+        const isYearExist = req.query.year;
+        const isGenreExist = req.query.genre;
+        const isSearchTermExist = req.query.searchTerm;
+        if (!isYearExist) {
+            delete req.query.year;
+        }
+        if (!isGenreExist) {
+            delete req.query.genre;
+        }
+        if (!isSearchTermExist) {
+            delete req.query.searchTerm;
+        }
+        const paginationOptions = (0, pick_1.default)(req.query, ["page", "limit"]);
         const filters = (0, pick_1.default)(req.query, book_constants_1.bookFilterableFields);
         const result = yield book_service_1.BookService.getAllBooks(filters, paginationOptions);
-        res.status(200).json({
-            statusCode: 200,
-            success: true,
-            message: "Books retrieved successfully!",
-            data: {
-                meta: result.meta,
-                data: result.data,
-            },
-        });
+        res.status(200).json(result);
     }
     catch (error) {
         next(error);

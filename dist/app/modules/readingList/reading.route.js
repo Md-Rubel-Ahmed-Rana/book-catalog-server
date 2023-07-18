@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReadingRoutes = void 0;
+const express_1 = require("express");
+const reading_controller_1 = require("./reading.controller");
+const router = (0, express_1.Router)();
+router.put("/:id", reading_controller_1.ReadingController.markAsRead);
+router.post("/", reading_controller_1.ReadingController.addToReading);
+router.get("/", reading_controller_1.ReadingController.getReadingList);
+exports.ReadingRoutes = router;

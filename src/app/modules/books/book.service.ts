@@ -1,4 +1,3 @@
-import { SortOrder } from "mongoose";
 import { paginationOptionsType } from "../../../utils/pagination";
 import { paginationHelper } from "../../../utils/paginationHelper";
 import { bookSearchableFields } from "./book.constants";
@@ -43,13 +42,7 @@ const getAllBooks = async (
     page = 1,
     limit = 9,
     skip = 0,
-    sortBy,
-    sortOrder,
   } = paginationHelper.calculatePagination(paginationOptions);
-  const sortCondition: { [key: string]: SortOrder } = {};
-  if (sortBy && sortOrder) {
-    sortCondition[sortBy] = sortOrder;
-  }
 
   // retrieving data
   const whereCondition = andCondition.length > 0 ? { $and: andCondition } : {};

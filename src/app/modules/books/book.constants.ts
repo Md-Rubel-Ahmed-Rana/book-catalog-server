@@ -1,5 +1,11 @@
-export const bookSearchableFields = ["title", "author", "genre", "year"];
+export const bookSearchableFields = [
+  "searchTerm",
+  "title",
+  "author",
+  "genre",
+  "year",
+];
 
-export const bookFilterableFields = ["genre", "year"];
+export const bookFilterableFields = ["searchTerm", "genre", "year"];
 
-export const paginationOptions = ["page", "limit", "sortBy", "sortOrder"];
+export const paginationOptions = ["page", "limit"];
